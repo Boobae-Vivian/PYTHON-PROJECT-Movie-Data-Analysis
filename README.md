@@ -46,12 +46,39 @@ In the exploration of "Movie Data" project using Python, the following skills an
 
 By showcasing proficiency in these skills and concepts, the project demonstrates a holistic understanding of data analysis, visualization, and interpretation using Python tools within the context of cinematic data exploration.
 
-## ANALYSIS, DISCUSSIONS AND RESULTS
+## STAGES TO NAVIGATE IN THE MOVIE DATA ANALYSIS PROJECT
 
-### 1. Data Cleaning:
-   -  Scrutinize column names and data types for standardization
-   -  Extract the year and month from the date column to facilitate visualization
-   -  Calculate the number of days from a movie's release date to the current date for temporal context
+The project comprises five critical stages essential for successful completion, which encompass:
+1. Libraries and Data Importation
+2. Data Assessment
+3. Data Cleaning
+4. Data Manipulation
+5. Data Visualization
+
+EXPLANATIONS
+--
+1. Libraries and Data Importation:
+ ---
+ The initial step of this project involves importing essential libraries suitable for the tasks. In this instance, I imported the following libraries: pandas, which is commonly aliased as 'pd' for data importation and manipulation; datetime, aliased as 'dt' to handle date data types; matplotlib.pyplot, aliased as 'plt' for data visualization; and the warnings library to handle any potential warnings encountered during the project.
+ 
+ Once these libraries are imported, the subsequent step is to bring the movie dataset into the Jupyter environment as a DataFrame using the 'pd.read_csv()' function. The dataset is then assigned to a variable named 'df'. Consequently, whenever 'df' is referenced, the movie dataset appears.
+ 
+ Below is the code snippet that accomplishes this task:
+ ```python
+import pandas as pd
+import datetime as dt
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+
+df = pd.read_csv(r'C:\Users\HP\Downloads\Python Dataset\Python Project Dataset.csv')
+df
+```
+The result of executing this code is depicted in the snapshot below.
+![](Python.png)
+   
+
+
 
 
 
