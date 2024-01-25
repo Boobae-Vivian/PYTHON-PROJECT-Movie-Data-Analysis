@@ -48,6 +48,11 @@ By showcasing proficiency in these skills and concepts, the project demonstrates
 
 ## ANALYSIS, DISCUSSIONS AND RESULTS
 
+### 1.  Data Cleaning:
+   - Scrutinize column names and data types for standardization.
+   - Extract the year and month from the date column to facilitate visualization.
+   - Calculate the number of days from a movie's release date to the current date for temporal context.
+
 
 
 
