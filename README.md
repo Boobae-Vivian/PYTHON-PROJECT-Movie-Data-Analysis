@@ -76,6 +76,9 @@ df
 ```
 The result of executing this code is depicted in the snapshot below.
 ![](Python.png)
+
+2. Data Assessment
+---
    
 
 
