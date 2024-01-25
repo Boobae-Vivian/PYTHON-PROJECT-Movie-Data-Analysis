@@ -55,8 +55,8 @@ The project comprises five critical stages essential for successful completion, 
 4. Data Manipulation
 5. Data Visualization
 
-EXPLANATIONS
---
+#### EXPLANATIONS
+
 1. Libraries and Data Importation:
  ---
  The initial step of this project involves importing essential libraries suitable for the tasks. In this instance, I imported the following libraries: pandas, which is commonly aliased as 'pd' for data importation and manipulation; datetime, aliased as 'dt' to handle date data types; matplotlib.pyplot, aliased as 'plt' for data visualization; and the warnings library to handle any potential warnings encountered during the project.
