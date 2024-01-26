@@ -103,6 +103,32 @@ C   |  D
 
 3. Data Cleaning:
 ---
+Upon assessment, various data issues were detected, including:
+- Inconsistent column headers and Non-descriptive column labeling
+- Inconsistent labeling of column values
+- Incorrect data type for the 'Date Added' column.
+
+  It is crucial to address these issues to prevent the possibility of drawing misleading conclusions during data analysis.
+
+  To tackle **Inconsistent column headers and Non-descriptive column labeling**, we opted to rename the columns using a dictionary. This dictionary stored the initial column names and their corresponding new names. The dictionary was assigned to a variable called "Col" for easy reference. We utilized the pandas rename function, specifying the columns keyword argument as "Col" to apply the dictionary changes, and set the inplace keyword argument to true to implement the changes in the main dataset.
+
+  For addressing **Inconsistent labeling of column values**, we utilized the pandas replace function. This function allows us to specify old values and their corresponding new values, along with the inplace keyword argument to apply changes directly to the dataset. Columns such as genre, title, country, rating, duration, and ID underwent this transformation, although only the cleaning process for the genre and title columns will be demonstrated in the snapshot below to showcase how inconsistent labeling of column values can be rectified.
+
+  Lastly, to address the **Incorrect data type for the 'Date Added' column**, we employed the datetime function. Prior to this, we encountered a problem within the date column where opening and closing brackets '()' were found within dates. To resolve this issue, we initially used the startswith string function to identify dates starting with these brackets. We then applied the strip function to remove the brackets and subsequently utilized the pandas datetime function to convert the date column from text data type to date data type. The dayfirst keyword argument of the datetime function was set to true to specify the format of the date.
+
+  Inconsistent column headers and Non-descriptive column labeling
+  :-------------------------------------------------------------:
+  ![](Python5.png)
+
+  Inconsistent labeling of column values (Genre)                 |  Inconsistent labeling of column values (Title)  
+  :-------------------------------------------------------------:|:---------------------------------------------:
+  ![](Python6.png)                                               | ![](Python7.png)
+  
+   Incorrect data type for the 'Date Added' column.
+  :-------------------------------------------------------------:
+  ![](Python12.png)
+
+  
 
 
 
