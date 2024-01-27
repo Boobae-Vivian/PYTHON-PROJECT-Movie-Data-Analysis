@@ -5,11 +5,11 @@
 Welcome to "Movie Data Analysis," a project delving into a comprehensive dataset with 8,790 rows of movie information. In this endeavor, we set out on an engaging journey to uncover hidden narratives within this extensive dataset, employing Python as our primary tool. Our key objectives encompass meticulous data cleaning and the use of visualization tools such as Seaborn or Matplotlib. Through this process, our aim is to unveil patterns, trends, and intriguing insights within the vast world of movie. Join us in this exploration, where the precision of Python-based data cleaning and the creativity of visualization converge to reveal the narratives embedded within 8,790 rows of movie information. The focus is on ensuring data accuracy and clarity in visual representations, offering detailed insights by addressing questions related to the most popular director, movie production trends, top and bottom movie-producing countries, and more. Let's dive into the world of movies and uncover the compelling stories behind the data!
 
 ## PROBLEM STATEMENT
-1. Extract the year and month from the date column to facilitate visualization.
-2. Calculate the number of days from a movie's release date to the current date.
+1. Calculate the number of days from a movie's release date to the current date
+2. Extract the year and month from the date column 
 3. Identify the most popular director
-4. Determine the top 5 and bottom 5 countries in terms of movie production.
-5. Analyze and visualize trends in movie production over different years.
+4. Determine the top 5 and bottom 5 countries in terms of movie production
+5. Analyze and visualize trends in movie production over different years
 6. Uncover the most popular country-genre mix
 7. Calculate and visualize countries with the highest average movie duration.
 
@@ -109,7 +109,7 @@ Upon assessment, various data issues were detected, including:
 
   For addressing **Inconsistent labeling of column values**, we utilized the pandas replace function. This function allows us to specify old values and their corresponding new values, along with the inplace keyword argument to apply changes directly to the dataset. Columns such as genre, title, country, rating, duration, and ID underwent this transformation, although only the cleaning process for the genre and title columns will be demonstrated in the snapshot below to showcase how inconsistent labeling of column values can be rectified.
 
-  Lastly, to address the **Incorrect data type for the 'Date' column**, we employed the datetime function. Prior to this, we encountered a problem within the date column where opening and closing brackets '()' were found within dates. To resolve this issue, we initially used the startswith string function to identify dates starting with these brackets. We then applied the strip function to remove the brackets and subsequently utilized the pandas datetime function to convert the date column from text data type to date data type. The dayfirst keyword argument of the datetime function was set to true to specify the format of the date.
+  Lastly, to address the **Incorrect data type for the 'Date' column**, we employed the datetime function. Prior to this, we encountered a problem within the date column where opening and closing brackets '()' were found within dates. To resolve this issue, we initially used the startswith string function to identify dates starting with these brackets. We then applied the strip function to remove the brackets and subsequently utilized the pandas datetime function to convert the date column from object data type to date data type. The dayfirst keyword argument of the datetime function was set to true to specify the format of the date.
 
    Cleaning and Result of Inconsistent column headers and Non-descriptive column labeling
   :-------------------------------------------------------------:
@@ -125,9 +125,57 @@ Upon assessment, various data issues were detected, including:
 
 4. Data Manipulation and Visualization (Analysis of the Problem Statement):
 ---
-   1. Extract the year and month from the date column to facilitate visualization:
+1. Determine the duration in days from a movie's release date to the present date:
+   ---
+      
+   To compute the duration in days from a movie's release date to the current date, the following syntax can be used:
 
-      To extract the year and month from the date column to facilitate visualization, 
+   ```python
+   df['Days_Added'] = (datetime.now() - df['Date']).dt.days
+   df.columns
+   df
+   ```
+   Explanation of the code:
+
+   - In the provided code snippet above, the column 'Days_Added' is created in the DataFrame 'df' to store the calculated duration.
+   - (datetime.now() - df['Date']).dt.days computes the difference between the current date and the release date of each movie in the 'Date' column of the DataFrame 'df'.
+   - The difference is then converted to days using the .dt.days attribute, which extracts the number of days from the calculated duration.
+   - In conclusion, the modified DataFrame, now including the newly introduced 'Days_Added' column, is showcased with reference to the variable 'df'. This presentation is illustrated in the snapshot below, where the enhancement is visually emphasized with a yellow highlight.
+
+   DURATION DAYS FROM A MOVIES'S RELEASE DATE TO THE PRESENT DATE
+   :------------------------------------------------------------:
+   ![](Python13.png)
+      
+2. Extract the year and month from the date column:
+   ---
+
+   To extract the year and month from the date column for easier visualization, you can use the following syntax:
+
+   ```python
+   df['Year'] = df['Date'].dt.year
+   df['Month'] = df['Date'].dt.month
+   df.columns
+   df
+   ```
+   Explanation:
+
+   - In the provided code snippet, two new columns 'Year' and 'Month' are created in the DataFrame 'df'.
+   - The 'Year' column is populated with the year component extracted from the 'Date' column using the .dt.year attribute.
+   - Similarly, the 'Month' column is populated with the month component extracted from the 'Date' column using the .dt.month attribute.
+   - Finally, the code displays the columns of the DataFrame 'df' along with the newly added 'Year' and 'Month' columns.
+
+   YEAR AND MONTH COLUMNS CREATED FROM THE DATE COLUMN
+   :------------------------------------------------:
+   ![](Python14.png)
+
+3. Identify the most popular director:
+   ---
+
+
+
+
+
+
 
       
 
