@@ -125,6 +125,7 @@ Upon assessment, various data issues were detected, including:
 
 4. Data Manipulation and Visualization (Analysis of the Problem Statement):
 ---
+
 1. Determine the duration in days from a movie's release date to the present date:
    ---
       
@@ -170,8 +171,120 @@ Upon assessment, various data issues were detected, including:
 
 3. Identify the most popular director:
    ---
+   To determine the most popular director, we will explore two methods: the counter method and the value counts method.
+
+   Counter Method Syntax
+   ```python
+   from collections import Counter
+
+   # Using Counter to count occurrences of each director
+   directors_counter = Counter(df['Director'])
+
+   # Extracting the most popular director
+   most_popular_director = directors_counter.most_common(2)[1:]
+
+   # Displaying the most popular director
+   print('The Most popular Director Is:')
+   for director, count in most_popular_director:
+      print(f"{director}: {count} Occurrences")
+   ```
+ 
+   Value Counts Method
+   ```python
+
+   # Using value_counts to count occurrences of each director and extracting the most popular one
+   most_popular_director = df['Director'].value_counts()[1:].idxmax()
+
+   # Displaying the most popular director
+   print(f'The Most Popular Director Is {most_popular_director}: 20 Occurrences')
+   ```
+   Explanation:
+ 
+   - In the Counter method, we import the Counter class from the collections module to count occurrences of each director in the 'Director' column of the DataFrame 'df'.
+   - We then extract the most popular director using the most_common() method and iterate over the result to display the director's name along with the count of occurrences.
+   - In the Value Counts method, we use the value_counts() function to count occurrences of each director and extract the most popular one using idxmax().
+   - Finally, we print out the most popular director identified by each method, along with the corresponding number of occurrences.
+ 
+   The analysis reveals Rajiv Chilaka as the most popular director with 20 occurrences.
+
+   ![](Python15.png)
+
+4. Determine the top 5 and bottom 5 countries in terms of movie production:
+   ---
+   To identify the top 5 and bottom 5 countries in terms of movie production, the following syntax can be used:
+
+   Top 5 Countries:
+   ```python
+   # Counting occurrences of each country
+   country_list = Counter(df['Country'])
+
+   # Extracting the top 5 countries
+   my_dict = country_list.most_common(6)
+   my_dict.pop(4)
+
+   # Displaying the top 5 countries with the highest movie production
+   print('Top 5 Countries With The Highest Movie Production Are:')
+   for country, count in my_dict:
+      print(f'{country}: {count}')
+
+   # Visualizing the top 5 countries with the highest movie production
+   countries, counts = zip(*my_dict)
+   fig, ax = plt.subplots(figsize=(12, 6))
+   bars = plt.bar(countries, counts, color='yellow')
+   plt.xlabel('Country')
+   plt.title('TOP 5 COUNTRIES WITH THE HIGHEST MOVIE PRODUCTION')
+   plt.xticks(rotation=0)
+   plt.yticks([])
+   
+   # Displaying the country counts on each bar.
+   for bar, count in zip(bars, counts):
+      plt.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), str(count), ha='center', color='black')
+   
+   # Eliminating the square lines enclosing the bars or visualization.
+   ax.spines['top'].set_visible(False)
+   ax.spines['bottom'].set_visible(False)
+   ax.spines['right'].set_visible(False)
+   ax.spines['left'].set_visible(False)
+
+   plt.show()
+   ```
+     
+   Bottom 5 Countries:
+   ```python
+   # Counting occurrences of each country
+   country_list = Counter(df['Country'])
+
+   # Extracting the bottom 5 countries
+   bottom_countries = country_list.most_common()[:-6:-1]
+
+   # Displaying the bottom 5 countries with the lowest movie production
+   print('Bottom 5 Countries With The Lowest Movie Production Are:')
+   for country, count in bottom_countries:
+      print(f'{country}: {count}')
+   ```
+   Explanation:
+
+   - The code snippet first counts the occurrences of each country using the Counter class from the collections module.
+   - For the top 5 countries, it creates a dictionary of the most common countries, excluding the 5th one, and prints out the results.
+   - It then visualizes the top 5 countries using a bar plot.
+   - For the bottom 5 countries, it creates another dictionary of the least common countries and prints out the results.
+     
+   The analysis indicates that Cyprus, Puerto Rico, Belarus, Senegal, and Luxembourg have the least movie production, each with 1 occurrence.
+
+   TOP 5             | BOTTOM 5   
+   :----------------:|:----------------:
+   ![](Python16b.png)|![](Python16c.png)
 
 
+
+
+
+
+
+
+
+   
+   
 
 
 
