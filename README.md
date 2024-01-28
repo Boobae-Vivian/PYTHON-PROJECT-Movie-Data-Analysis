@@ -273,7 +273,171 @@ Upon assessment, various data issues were detected, including:
 
    TOP 5             | BOTTOM 5   
    :----------------:|:----------------:
-   ![](Python16b.png)|![](Python16c.png)
+   ![](Python16b.png)|![](Python16ca.png)
+
+5. Analyze and visualize trends in movie production over different years:
+   ---
+   To analyze and visualize trends in movie production over different years, you can use the following syntax:
+
+   ```python
+   # Counting the number of movies produced each year
+   years = df['Year'].value_counts()
+
+   # Creating a figure for the plot
+   plt.figure(figsize=(16, 7))
+
+   # Plotting the data using a line chart
+   plt.plot(years.index, years.values, marker='*', color='green', label='line Chart', linewidth=1.5)
+
+   # Setting the x-axis ticks to be the years
+   plt.xticks(years.index)
+
+   # Annotating each data point with its count
+   for x, y in zip(years.index, years.values):
+      plt.annotate(f'{y}', (x, y), textcoords="offset points", xytext=(0, 8), ha='center')
+
+   # Adding title and labels
+   plt.title('MOVIE TRENDS OVER THE YEARS')
+   plt.xlabel('Years')
+   plt.yticks([])
+
+   # Removing unnecessary spines
+   plt.gca().spines['top'].set_visible(False)
+   plt.gca().spines['right'].set_visible(False)
+   plt.gca().spines['bottom'].set_visible(True)
+   plt.gca().spines['left'].set_visible(False)
+
+   # Displaying the plot
+   plt.show()
+   ```
+   Explanation:
+
+   - The code snippet starts by counting the number of movies produced each year using the value_counts() function.
+   - It then creates a figure with a specified size for the plot using plt.figure().
+   - The data is plotted using a line chart, where years are plotted on the x-axis and the number of movies produced in each year is plotted on the y-axis.
+   - Each data point is marked with a star marker, colored green, and labeled as 'line Chart'. The linewidth is set to 1.5 for better visibility.
+   - The x-axis ticks are set to the years extracted from the DataFrame.
+   - Annotations are added to each data point to display the count of movies produced in that year.
+   - Title, x-axis label, and y-axis ticks are added to the plot.
+   - Unnecessary spines (top and right) are removed for better aesthetics.
+   - Finally, the plot is displayed using plt.show().
+     
+    TRENDS IN MOVIE PRODUCTION
+   :------------------------------------------------:
+   ![](Python17a.png)
+
+6. Uncover the most popular country-genre mix:
+   ---
+
+   To uncover the most popular country-genre mix, we would employ the following syntax:
+
+   ```python
+
+   # Grouping the DataFrame by 'Country' and 'Genre' and counting the occurrences
+   country_genre_counts = df.groupby(['Country', 'Genre']).size().reset_index(name='count')
+
+   # Sorting the grouped data by count in descending order and selecting the top 5
+   top_country_genre = country_genre_counts.sort_values(by='count', ascending=False).head(5)
+
+   # Creating a bar plot to visualize the top country-genre mixes
+   fig, ax = plt.subplots(figsize=(12, 6))
+   bars = ax.bar(range(len(top_country_genre)), top_country_genre['count'], align='center', color='green')
+
+   # Adding labels to the bars indicating the count of each mix
+   for bar, value in zip(bars, top_country_genre['count']):
+      ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), str(value), ha='center', va='bottom')
+
+   # Setting x-axis ticks to display country-genre combinations
+   plt.xticks(range(len(top_country_genre)), [f"{country} - {genre}" 
+   for country, genre in zip(top_country_genre['Country'], top_country_genre['Genre'])], rotation=0, ha='center')
+
+   # Adding labels and title to the plot
+   plt.xlabel('Country - Genre')
+   plt.title('COUNTRY_GENRE MIX')
+
+   # Removing y-axis ticks and unnecessary spines
+   plt.yticks([])
+   ax.spines['top'].set_visible(False)
+   ax.spines['bottom'].set_visible(False)
+   ax.spines['left'].set_visible(False)
+   ax.spines['right'].set_visible(False)
+
+   # Displaying the plot
+   plt.show()
+   ```
+   Explanation:
+
+   - The code first groups the DataFrame by 'Country' and 'Genre', and then computes the count of occurrences for each combination.
+   - It then sorts the grouped data based on the count in descending order and selects the top 5 combinations.
+   - A bar plot is created to visualize the top country-genre mixes, with bars representing the count of each mix.
+   - Labels indicating the count of each mix are added to the bars.
+   - The x-axis ticks are set to display the country-genre combinations.
+   - Labels and title are added to the plot for clarity.
+   - Y-axis ticks are removed for a cleaner appearance.
+   - Unnecessary spines (top, bottom, left, right) are hidden to improve visualization aesthetics.
+   - Finally, the plot is displayed using plt.show().
+
+
+   MOST POPULAR COUNTRY_GENRE MIX
+   :------------------------------------------------:
+   ![](Python18a.png)
+
+7. Calculate and visualize countries with the highest average movie duration.
+   ---
+   To compute and visualize countries with the highest average movie duration, you can use the following syntax:
+   ```python
+   # Calculating the average movie duration for each country
+   average_duration = df.groupby('Country')['Duration'].mean().round(0)
+
+   # Selecting the top 3 countries with the highest average movie duration
+   top_countries = average_duration.sort_values(ascending=False).head(3)
+
+   # Creating a pie chart to visualize the distribution of movie duration across the top countries
+   plt.pie(top_countries, labels=top_countries.index, autopct='%1.1f%%', startangle=90, 
+   colors=['yellow', 'lightblue', 'skyblue'])
+
+   # Adding title to the plot
+   plt.title('Top Three Countries With The Highest Average Movie Duration')
+
+   # Displaying the plot
+   plt.show()
+   ```
+   Explanation:
+
+   - The code first computes the average movie duration for each country by grouping the DataFrame by 'Country' and calculating the mean duration.
+   - It then selects the top 3 countries with the highest average movie duration by sorting the average duration values in descending order and selecting the top 3.
+   - A pie chart is created using plt.pie() to visualize the distribution of movie duration across the top countries.
+   - Labels for each slice of the pie chart are set to the country names, and the autopct parameter formats the percentage values displayed on each slice.
+   - The startangle parameter rotates the pie chart to start from the 90-degree angle.
+   - Custom colors are assigned to each slice for better visualization.
+   - Finally, a title is added to the plot to provide context to the visualization, and the plot is displayed using plt.show().
+  
+   COUNTRIES WITH THE HIGHEST AVERAGE MOVIE DURATION 
+   :------------------------------------------------:
+   ![](Python19b.png)
+
+## RECOMMENDATION
+
+Based on the analysis conducted in this project, several insights have been gleaned regarding the trends and characteristics of the movie dataset. Moving forward, it is recommended to further explore and analyze specific genres, directors, and countries that contribute significantly to the movie industry. Additionally, conducting sentiment analysis or audience reviews could provide deeper insights into audience preferences and trends, thereby informing decision-making processes for movie production and distribution.
+
+## CONCLUSION
+
+In conclusion, this project successfully explored and analyzed a diverse dataset of movies, uncovering valuable insights into movie production trends, popular directors, country-genre mixes, and average movie durations. Through meticulous data cleaning and insightful visualization techniques, we have gained a better understanding of the dynamics within the movie industry. By leveraging these findings, stakeholders can make informed decisions to enhance movie production strategies, cater to audience preferences, and contribute to the continued growth and evolution of the cinema landscape. This project serves as a foundation for further research and analysis in the domain of movie data analysis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
 
 
